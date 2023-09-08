@@ -1,13 +1,116 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Student Database</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
 <meta name="description" content="This is a project for Devf">
 <meta name="keywords" content="data structure computer science"> 
 <script src="main.js"></script>
 
 </head>
 <body>
-Content goes here.
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            SDevf
+          </a>
+          <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" onclick="show('registerstudent',['registerclass'])">
+              Register Student
+            </a>
+            <a class="navbar-item" onclick="show('registerclass',['registerstudent'])">
+                Register Class
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <section class="section">
+        <div class="container">
+          <h1 class="title">
+           Student database
+          </h1>
+          <p class="subtitle">
+            Project Devf
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container" id="registerstudent">
+      <div class="field">
+        <label class="label">First name</label>
+        <div class="control">
+          <input class="input" id="firstname" type="text" placeholder="e.g Theresa">
+        </div>
+      </div>
+      <div id="firstname_error" class="notification is-danger" hidden>
+        <button class="delete"></button>
+        First name not valid.
+      </div>
+      <div class="field">
+        <label class="label">Last name</label>
+        <div class="control">
+          <input class="input" id="lastname" type="text" placeholder="e.g. Barrett">
+        </div>
+      </div>
+      <div id="lastname_error" class="notification is-danger" hidden>
+        <button class="delete"></button>
+        Last name not valid.
+      </div>
+      <div class="field">
+        <label class="label">Age</label>
+        <div class="control">
+          <input class="input" id="age" type="number" placeholder="e.g. 89">
+        </div>
+      </div>
+      <div id="age_error" class="notification is-danger" hidden>
+        <button class="delete"></button>
+        Age not valid.
+      </div>
+      <div class="control">
+        <button onclick="addstudent()"  class="button is-primary">Add</button>
+      </div>
+    </div>
+    </section>
+
+    <section class="section" hidden>
+        <div class="container" id="registerclass">
+      <div class="field">
+        <label class="label">Class name</label>
+        <div class="control">
+          <input class="input" id="classname" type="text" placeholder="e.g Biology">
+        </div>
+      </div>
+      <div id="classname_error" class="notification is-danger" hidden>
+        <button class="delete"></button>
+        First name not valid.
+      </div>
+      <div class="field">
+        <label class="label">Id class</label>
+        <div class="control">
+          <input class="input" id="idclass" type="text" placeholder="e.g. bio01">
+        </div>
+      </div>
+      <div id="idclass_error" class="notification is-danger" hidden>
+        <button class="delete"></button>
+        Last name not valid.
+      </div>
+    
+      <div class="control">
+        <button onclick="addstudent()"  class="button is-primary">Add</button>
+      </div>
+    </div>
+    </section>
 </body>
 </html>
