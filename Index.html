@@ -14,103 +14,153 @@
 <body>
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
-          <a class="navbar-item">
+        <a class="navbar-item">
             SDevf
-          </a>
-          <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+        </a>
+        <div class="navbar-burger" data-target="navbarExampleTransparentExample">
             <span></span>
             <span></span>
             <span></span>
-          </div>
         </div>
-      
+        </div>
         <div id="navbarExampleTransparentExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" onclick="show('registerstudent',['registerclass'])">
-              Register Student
+        <div class="navbar-start">
+            <a class="navbar-item" onclick="show('registerstudent',['registerclass','enrollStudent','student'])">
+            Register Student
             </a>
-            <a class="navbar-item" onclick="show('registerclass',['registerstudent'])">
+            <a class="navbar-item" onclick="show('registerclass',['registerstudent','enrollStudent','studentlist'])">
                 Register Class
-              </a>
+            </a>
+            <a class="navbar-item" onclick="showenrolledstudents('enrollStudent',['registerstudent','registerclass','studentlist'])">
+                Enroll Students
+            </a>
+            <a class="navbar-item" onclick="showstudentlist('studentlist',['registerstudent','registerclass','enrollStudent'])">
+                Student List
+        </a>
             </div>
-          </div>
         </div>
-      </nav>
+        </div>
+    </nav>
     <section class="section">
         <div class="container">
-          <h1 class="title">
-           Student database
-          </h1>
-          <p class="subtitle">
+        <h1 class="title">
+        student database
+        </h1>
+        <p class="subtitle">
             Project Devf
-          </p>
+        /p>
         </div>
-      </section>
-      <section class="section">
+    </section>
+    <section class="section">
         <div class="container" id="registerstudent">
-      <div class="field">
+    <div class="field">
         <label class="label">First name</label>
         <div class="control">
-          <input class="input" id="firstname" type="text" placeholder="e.g Theresa">
+        <input class="input" id="firstname" type="text" placeholder="e.g Theresa">
         </div>
-      </div>
-      <div id="firstname_error" class="notification is-danger" hidden>
+    </div>
+    <div id="firstname_error" class="notification is-danger" hidden>
         <button class="delete"></button>
         First name not valid.
-      </div>
-      <div class="field">
+    </div>
+    <div class="field">
         <label class="label">Last name</label>
         <div class="control">
-          <input class="input" id="lastname" type="text" placeholder="e.g. Barrett">
+        <input class="input" id="lastname" type="text" placeholder="e.g. Barrett">
         </div>
-      </div>
-      <div id="lastname_error" class="notification is-danger" hidden>
+    </div>
+    <div id="lastname_error" class="notification is-danger" hidden>
         <button class="delete"></button>
         Last name not valid.
-      </div>
-      <div class="field">
+    </div>
+    <div class="field">
         <label class="label">Age</label>
         <div class="control">
-          <input class="input" id="age" type="number" placeholder="e.g. 89">
+        <input class="input" id="age" type="number" placeholder="e.g. 89">
         </div>
-      </div>
-      <div id="age_error" class="notification is-danger" hidden>
+    </div>
+    <div id="age_error" class="notification is-danger" hidden>
         <button class="delete"></button>
         Age not valid.
-      </div>
-      <div class="control">
-        <button onclick="addstudent()"  class="button is-primary">Add</button>
-      </div>
     </div>
-    </section>
-
-    <section class="section" hidden>
-        <div class="container" id="registerclass">
-      <div class="field">
+    <div class="control">
+        <button onclick="addstudent()"  class="button is-primary">Add</button>
+    </div>
+    </div>
+    <div class="container" id="registerclass" hidden> 
+    <div class="field">
         <label class="label">Class name</label>
         <div class="control">
-          <input class="input" id="classname" type="text" placeholder="e.g Biology">
+        <input class="input" id="classname" type="text" placeholder="e.g Biology">
         </div>
-      </div>
-      <div id="classname_error" class="notification is-danger" hidden>
+    </div>
+    <div id="classname_error" class="notification is-danger" hidden>
         <button class="delete"></button>
-        First name not valid.
-      </div>
-      <div class="field">
+        Class name not valid.
+    </div>
+    <div class="field">
         <label class="label">Id class</label>
         <div class="control">
-          <input class="input" id="idclass" type="text" placeholder="e.g. bio01">
+        <input class="input" id="classid" type="text" placeholder="e.g. bio01">
         </div>
-      </div>
-      <div id="idclass_error" class="notification is-danger" hidden>
-        <button class="delete"></button>
-        Last name not valid.
-      </div>
-    
-      <div class="control">
-        <button onclick="addstudent()"  class="button is-primary">Add</button>
-      </div>
     </div>
+    <div id="classid_error" class="notification is-danger" hidden>
+        <button class="delete"></button>
+        Class Id not valid.
+    </div>
+    
+    <div class="control">
+        <button onclick="addclass()"  class="button is-primary">Add</button>
+    </div>
+    </div>
+    
+    <div class="container" id="enrollStudent" hidden>
+    
+        <div class="field">
+            <label class="label">Choose Student</label>
+            <div class="control">
+            <div class="select">
+                <select id="candidatestudents">
+                </select>
+            </div>
+            </div>
+        </div>
+    
+        <div class="field">
+            <label class="label">Choose class</label>
+            <div class="control">
+            <div class="select">
+                <select id="candidateclass">
+                </select>
+            </div>
+            </div>
+        </div>
+    
+    <div class="control">
+        <button onclick="enrollstudent()"  class="button is-primary">Add</button>
+    </div>
+    </div>
+    <div class="container" id="studentlist" hidden>
+        <div class="table-container">
+            <table class="table" >
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Subjects [grades]</th>
+            </tr>
+            <tbody id="studentstable">
+
+            </tbody><!-- Your table content -->
+            </table>
+        </div>
+    <div class="control">
+        <button onclick="enrollstudent()"  class="button is-primary">Add</button>
+    </div>
+    </div>
+
+
     </section>
+
 </body>
 </html>
