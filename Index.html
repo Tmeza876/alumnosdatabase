@@ -25,18 +25,21 @@
         </div>
         <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" onclick="show('registerstudent',['registerclass','enrollStudent','student'])">
+            <a class="navbar-item" onclick="show('registerstudent',['registerclass','enrollStudent','student','gradestudents'])">
             Register Student
             </a>
-            <a class="navbar-item" onclick="show('registerclass',['registerstudent','enrollStudent','studentlist'])">
+            <a class="navbar-item" onclick="show('registerclass',['registerstudent','enrollStudent','studentlist','gradestudents'])">
                 Register Class
             </a>
-            <a class="navbar-item" onclick="showenrolledstudents('enrollStudent',['registerstudent','registerclass','studentlist'])">
+            <a class="navbar-item" onclick="showenrolledstudents('enrollStudent',['registerstudent','registerclass','studentlist','gradestudents'])">
                 Enroll Students
             </a>
-            <a class="navbar-item" onclick="showstudentlist('studentlist',['registerstudent','registerclass','enrollStudent'])">
+            <a class="navbar-item" onclick="showstudentlist('studentlist',['registerstudent','registerclass','enrollStudent','gradestudents'])">
                 Student List
-        </a>
+            </a>
+            <a class="navbar-item" onclick="showgradestudent('gradestudents',['registerstudent','registerclass','enrollStudent','studentlist'])">
+                Grade Students
+            </a>
             </div>
         </div>
         </div>
@@ -159,6 +162,39 @@
     </div>
     </div>
 
+    <div class="container" id="gradestudents" hidden>
+        <div class="field">
+            <label class="label" >Choose Student</label>
+            <div class="control">
+            <div class="select">
+                <select onchange="loadclasses()" id="candidatestudents2">
+                </select>
+            </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Choose Class</label>
+            <div class="control">
+            <div class="select">
+                <select id="candidateclass2">
+                </select>
+            </div>
+            </div>
+        </div>
+
+    
+        <div class="field">
+                <label class="label">Grade</label>
+                <div class="control">
+                <input class="input" id="grade" type="number" placeholder="e.g 9.5">
+                </div>
+        </div>
+    
+    <div class="control">
+        <button onclick="savestudentgrade()"  class="button is-primary">Mark</button>
+    </div>
+    </div>
 
     </section>
 

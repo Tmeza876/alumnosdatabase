@@ -72,13 +72,24 @@ function addclass(){
     document.getElementById("classid").value="";  
 }
 
+function savestudentgrade(){
+    var candidatestudents=document.getElementById ("candidatestudents2").value;
+    var candidateclass=document.getElementById ("candidateclass2").value;
+    var grade=parseInt(document.getElementById ("grade").value);
+    
+    students[parseInt(candidatestudents)].subjects[classes[parseInt(candidateclass)].classid]=grade;
+    localStorage.setItem('students',JSON.stringify(students)); 
+    document.getElementById ("grade").value="";
+}
+
 function enrollstudent(){
     var candidatestudents=document.getElementById ("candidatestudents").value;
     var candidateclass=document.getElementById ("candidateclass").value;
-    console.log(students[parseInt(candidatestudents)].subjects);
     students[parseInt(candidatestudents)].subjects[classes[parseInt(candidateclass)].classid]=0;
     localStorage.setItem('students',JSON.stringify(students)); 
 }
+
+
 
 function show(id,ids){
     document.getElementById(id).hidden=false;
@@ -143,6 +154,48 @@ function showstudentlist(id,ids){
     }
     show(id,ids);
 }
+
+function showgradestudent(id,ids){
+    var options=document.getElementById("candidatestudents2");
+    var index=0;
+    var child=options.lastElementChild;
+    while(child){
+        options.removeChild(child);
+        child=options.lastElementChild;
+    }
+    students.forEach(student=>{
+    let opt = document.createElement('option');
+    opt.value=index;
+    opt.textContent= student.firstname+' '+student.lastname; 
+    options.appendChild(opt);
+    index+=1;
+    })
+
+    show(id,ids);
+    loadclasses();
+}
+
+function loadclasses(){
+    var i=parseInt(document.getElementById("candidatestudents2").value);
+    var student=students[i];
+    console.log(">>>",student);
+
+    var options=document.getElementById("candidateclass2");
+    var index=0;
+    var child=options.lastElementChild;
+    while(child){
+        options.removeChild(child);
+        child=options.lastElementChild;
+    }
+    for(const [k,v] of Object.entries(student.subjects)){
+    let opt = document.createElement('option');
+    opt.value=index;
+    opt.textContent= k; 
+    options.appendChild(opt);
+    index+=1;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
     const $notification = $delete.parentNode;
